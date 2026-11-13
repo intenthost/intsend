@@ -1,0 +1,14 @@
+# ── Secrets ───────────────────────────────────
+.env
+
+# ── Deployment Script ─────────────────────────
+deploy.py
+
+# ── Composer / Dependencies ───────────────────
+vendor/
+composer.lock
+
+# ── System / Temporary ────────────────────────
+.DS_Store
+Thumbs.db
+*.log

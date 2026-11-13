@@ -1,0 +1,22 @@
+Options -Indexes
+
+# ── Route everything through index.php ────────
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# ── Force JSON content-type security headers ──
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "no-referrer"
+    Header always unset X-Powered-By
+</IfModule>
+
+# ── Block direct access to sensitive files ────
+<FilesMatch "^(\.env.*|composer\.(json|lock)|README\.md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
